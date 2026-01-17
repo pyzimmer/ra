@@ -1,0 +1,27 @@
+{
+  "id": "mspc-consignation-001",
+  "title": "Consignation électrique – Poste A",
+  "steps": [
+    {
+      "title": "EPI obligatoires",
+      "short": "Gants + lunettes + chaussures S3",
+      "desc": "Mettre les EPI avant d’approcher l’armoire.",
+      "icon": "assets/epi_lunettes.png",
+      "video": "assets/step01_epi.mp4"
+    },
+    {
+      "title": "Arrêt machine",
+      "short": "Stop cycle puis arrêt général",
+      "desc": "Attendre l’arrêt complet avant toute action.",
+      "icon": "assets/danger.png",
+      "video": "assets/step02_arret.mp4"
+    },
+    {
+      "title": "Sectionnement",
+      "short": "Interrupteur-sectionneur sur 0",
+      "desc": "Vérifier le bon départ électrique.",
+      "icon": "assets/danger.png",
+      "video": "assets/step03_sectionnement.mp4"
+    }
+  ]
+}

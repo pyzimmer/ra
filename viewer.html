@@ -3,36 +3,85 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>Viewer RA – Procédures</title>
+  <title>RA Procédures</title>
 
-  <!-- A-Frame + AR.js -->
+  <!-- A-Frame + AR.js (marker-based) -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
 
+  <link rel="manifest" href="pwa/manifest.webmanifest">
   <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: black;
-    }
-
-    a-scene {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-    }
-
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
     .hud {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,.75);
-      color: #fff;
-      padding: 12px;
-      z-index: 10;
+      position: fixed; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,.75); color: #fff;
+      padding: 12px 12px 14px; z-index: 10;
     }
+    .row { display:flex; gap:10px; align-items:center; }
+    .badge { display:inline-block; padding:2px 8px; border:1px solid rgba(255,255,255,.35); border-radius:999px; font-size:12px; }
+    .title { font-weight: 650; margin: 6px 0; line-height:1.2; }
+    .desc { margin: 0 0 10px; line-height:1.25; font-size: 14px; opacity:.95; }
+    .btn { border:0; padding:10px 12px; border-radius:10px; font-weight:650; }
+    .btn.secondary { background: rgba(255,255,255,.12); color:#fff; }
+    .btn.primary { background: #1e90ff; color:#071018; }
+    .btn:active { transform: translateY(1px); }
+  </style>
+</head>
 
-    .badges {
-      display: flex;
-      gap: 8px;
+<body>
+  <a-scene
+    embedded
+    vr-mode-ui="enabled:false"
+    renderer="antialias:true; alpha:true"
+    arjs="sourceType: webcam; debugUIEnabled:false;"
+  >
+    <a-assets id="assets"></a-assets>
+
+    <!-- Marker par défaut "Hiro" (imprimable facilement) -->
+    <a-marker preset="hiro" id="marker">
+      <!-- Un panneau "étape" qui s'affiche sur le marker -->
+      <a-plane id="panel" position="0 0.5 0" rotation="-90 0 0" width="1.1" height="0.65" color="#111" opacity="0.85"></a-plane>
+
+      <a-image id="icon" position="-0.42 0.52 0" rotation="-90 0 0" width="0.22" height="0.22"></a-image>
+
+      <a-text id="t1" position="-0.25 0.62 0" rotation="-90 0 0"
+              width="1.2" color="#fff" value="Chargement..."
+              baseline="top" align="left"></a-text>
+
+      <a-text id="t2" position="-0.25 0.50 0" rotation="-90 0 0"
+              width="1.2" color="#ddd" value=""
+              baseline="top" align="left"></a-text>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <div class="hud">
+    <div class="row">
+      <span class="badge" id="bProc">Procédure</span>
+      <span class="badge" id="bStep">Étape -/-</span>
+      <span class="badge" id="bMarker">Marker: non détecté</span>
+    </div>
+
+    <div class="title" id="uiTitle">...</div>
+    <p class="desc" id="uiDesc"></p>
+
+    <div class="row">
+      <button class="btn secondary" id="prevBtn">Précédent</button>
+      <button class="btn secondary" id="resetBtn">Recommencer</button>
+      <button class="btn primary" id="nextBtn">Valider / Suivant</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+
+<video id="videoPlayer"
+       controls
+       playsinline
+       style="width:100%; max-height:180px; display:none; margin-bottom:8px;">
+</video>
+
+</body>
+</html>
+
+

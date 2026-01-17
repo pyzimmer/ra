@@ -1,37 +1,38 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Viewer RA – Test</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Viewer RA – Procédures</title>
 
-<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <!-- A-Frame + AR.js -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
 
-<style>
-body { margin:0; background:black; color:white; }
-a-scene { position:fixed; inset:0; z-index:0; }
-.hud {
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  background:rgba(0,0,0,.85);
-  padding:10px;
-  z-index:10;
-}
-</style>
-</head>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: black;
+    }
 
-<body>
+    a-scene {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
 
-<a-scene embedded>
-  <a-entity camera></a-entity>
-</a-scene>
+    .hud {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,.75);
+      color: #fff;
+      padding: 12px;
+      z-index: 10;
+    }
 
-<div class="hud">
-  <h2>HUD visible</h2>
-  <p>Si tu vois ceci, le problème vient d’AR.js</p>
-</div>
-
-</body>
-</html>
+    .badges {
+      display: flex;
+      gap: 8px;

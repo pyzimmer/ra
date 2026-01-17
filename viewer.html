@@ -1,127 +1,37 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Viewer RA – Procédures</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viewer RA – Test</title>
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 
-  <!-- A-Frame + AR.js -->
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-      background: black;
-    }
-
-    .hud {
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0,0,0,0.85);
-      color: white;
-      padding: 10px;
-      z-index: 10;
-    }
-
-    .badges {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 6px;
-      font-size: 12px;
-    }
-
-    .badge {
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 999px;
-      padding: 2px 8px;
-    }
-
-    .title {
-      font-size: 18px;
-      font-weight: 600;
-      margin: 4px 0;
-    }
-
-    .desc {
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    video {
-      width: 100%;
-      max-height: 180px;
-      background: black;
-      margin-bottom: 6px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 8px;
-    }
-
-    button {
-      flex: 1;
-      padding: 10px;
-      font-size: 16px;
-      font-weight: 600;
-      border-radius: 8px;
-      border: none;
-    }
-
-    .secondary {
-      background: rgba(255,255,255,0.15);
-      color: white;
-    }
-
-    .primary {
-      background: #1e90ff;
-      color: black;
-    }
-  </style>
+<style>
+body { margin:0; background:black; color:white; }
+a-scene { position:fixed; inset:0; z-index:0; }
+.hud {
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(0,0,0,.85);
+  padding:10px;
+  z-index:10;
+}
+</style>
 </head>
 
 <body>
 
-<!-- SCÈNE RA -->
-<a-scene
-  embedded
-  vr-mode-ui="enabled:false"
-  renderer="antialias:true; alpha:true"
-  arjs="sourceType: webcam; debugUIEnabled:false;"
->
+<a-scene embedded>
+  <a-entity camera></a-entity>
+</a-scene>
 
-  <a-assets id="assets"></a-assets>
+<div class="hud">
+  <h2>HUD visible</h2>
+  <p>Si tu vois ceci, le problème vient d’AR.js</p>
+</div>
 
-  <a-marker preset="hiro" id="marker">
-    <a-plane position="0 0.5 0"
-             rotation="-90 0 0"
-             width="1.1"
-             height="0.6"
-             color="#111"
-             opacity="0.85"></a-plane>
-
-    <a-image id="icon"
-             position="-0.45 0.55 0"
-             rotation="-90 0 0"
-             width="0.22"
-             height="0.22"></a-image>
-
-    <a-text id="raTitle"
-            position="-0.25 0.62 0"
-            rotation="-90 0 0"
-            width="1.2"
-            color="#fff"
-            align="left"
-            baseline="top"></a-text>
-
-    <a-text id="raShort"
-            position="-0.25 0.50 0"
-            rotation="-90 0 0"
-            width="1.2"
-            color="#ddd"
+</body>
+</html>
